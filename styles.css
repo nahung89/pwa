@@ -37,3 +37,10 @@ main {
 .article img {
   width: 100%;
 }
+
+video {  
+  width:100%; 
+  max-width:500px; 
+  height:auto; 
+  margin: 0 0 1em 0;
+}

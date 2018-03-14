@@ -1,5 +1,3 @@
-const youtubeApiKey = 'AIzaSyCuKiLLcCzZSW4Dw1KE0kRK3kOHCykFOig';
-const youtubeChannelId = 'UCnUYZLuoy1rq1aVMwx4aTzw';
 const newsArticles = document.querySelector('main');
 
 if ('serviceWorker' in navigator) {
@@ -9,9 +7,7 @@ if ('serviceWorker' in navigator) {
       .catch(err => 'SW registration failed'));
 }
 
-window.addEventListener('load', e => {
-  fetchVibbidi();
-});
+window.addEventListener('load', e => fetchVibbidi());
 
 window.addEventListener('online', () => fetchVibbidi());
 
@@ -27,7 +23,7 @@ function createVibbidi(item) {
   return `
   <div class="article">
       <h2>${item.id}</h2>
-      <video controls poster="${item.uri}.jpg" style="margin: 0 0 1em 0; max-width: 100%; width: 480px;">
+      <video controls poster="${item.uri}.jpg">
         <source src="${item.uri}" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
@@ -35,37 +31,4 @@ function createVibbidi(item) {
   `;
 }
 
-
-// async function fetchYoutube() {
-//   newsArticles.innerHTML = '';
-//   const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeChannelId}&key=${youtubeApiKey}`)
-//   const json = await response.json();
-//   newsArticles.innerHTML = 
-//      json.items.map(createYoutube).join('\n');
-// }
-
-
-// function createYoutube(item) {
-//   return `
-//     <div class="article">
-//         <h2>${item.id.videoId}</h2>
-//         <video id="player-${item.id.videoId}" controls="" src="https://redirector.googlevideo.com/videoplayback?ratebypass=yes&amp;mt=1510077993----SKIPPED----amp;utmg=ytap1,,hd720"><source>Your browser does not support HTML5 video.</video>
-
-//     </div>
-//   `;
-// }
-
-
-
-
-// function createArticle(article) {
-//   return `
-//     <div class="article">
-//       <a href="${article.url}">
-//         <h2>${article.title}</h2>
-//         <img src="${article.urlToImage}" alt="${article.title}">
-//         <p>${article.description}</p>
-//       </a>
-//     </div>
-//   `;
-// }
+// <video controls poster="${item.uri}.jpg" style="margin: 0 0 1em 0; max-width: 100%; width: 480px;">
