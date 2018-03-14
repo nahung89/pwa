@@ -1,5 +1,8 @@
-Service Worker Video Cache Sample
-===
-See https://googlechrome.github.io/samples/service-worker/prefetch-video/index.html for a live demo.
+# Simple PWA example 
 
-Learn more at https://www.chromestatus.com/feature/6561526227927040
+Online demo can be found on https://marcushellberg.github.io/alternative-news
+
+## Running locally
+
+Serve folder with your server of choice. For instance `npm install -g serve`.
+
