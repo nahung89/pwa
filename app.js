@@ -17,17 +17,23 @@ async function fetchVibbidi() {
   const json = await response.json();
   newsArticles.innerHTML = 
      json.videos.map(createVibbidi).join('\n');
+
 }
 
 function createVibbidi(item) {
   return `
-  <div class="article">
+  <div class="video-wrapper">
       <h2>${item.id}</h2>
       <video controls poster="${item.uri}.jpg">
         <source src="${item.uri}" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
+      <audio controls>
+        <source src="${item.uri}.mp3" type="audio/mpeg" />
+        Your browser does not support HTML5 audio.
+      </audio>
   </div>
+
   `;
 }
 
