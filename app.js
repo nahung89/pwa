@@ -21,16 +21,15 @@ async function fetchVibbidi() {
 }
 
 function createVibbidi(item) {
-  var mp4url = item.uri.replace("http", "https");
   return `
   <div class="video-wrapper">
       <h2>${item.id}</h2>
-      <video controls poster="${mp4url}.jpg">
-        <source src="${mp4url}" type="video/mp4" />
+      <video controls poster="${item.uri}.jpg">
+        <source src="${item.uri}" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
       <audio controls>
-        <source src="${mp4url}.mp3" type="audio/mpeg" />
+        <source src="${item.uri}.mp3" type="audio/mpeg" />
         Your browser does not support HTML5 audio.
       </audio>
   </div>
