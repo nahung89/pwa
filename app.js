@@ -33,7 +33,6 @@ function createVibbidi(item) {
         Your browser does not support HTML5 audio.
       </audio>
   </div>
-
   `;
 }
 
