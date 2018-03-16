@@ -13,7 +13,7 @@ window.addEventListener('online', () => fetchVibbidi());
 
 async function fetchVibbidi() {
   newsArticles.innerHTML = '';
-  const response = await fetch(`https://api4.vibbidi.com/static/artists_794881599030348_singles_2items.json`)
+  const response = await fetch(`https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`)
   const json = await response.json();
   newsArticles.innerHTML = 
      json.videos.map(createVibbidi).join('\n');
