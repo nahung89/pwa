@@ -20,16 +20,53 @@ async function fetchVibbidi() {
 
 }
 
+document.addEventListener("play", function(e) {
+    if(window.$_currentlyPlaying && window.$_currentlyPlaying != e.target) {
+        window.$_currentlyPlaying.pause();
+    } 
+    window.$_currentlyPlaying = e.target;
+}, true);
+
+document.addEventListener("ended", function(e) {
+  console.log("end: ", e.target);
+  // If audio end
+  if(e.target.tagName.toLowerCase() === 'audio') {
+    var items = document.getElementsByTagName('audio');
+    for(var i = 0, len = items.length; i < len;i++){
+        if(items[i] == e.target) {
+          if (i+1 < items.length){
+            items[i+1].play();
+          } else {
+            items[0].play();
+          }
+        } 
+    }
+  }
+  // If video end
+  if(e.target.tagName.toLowerCase() === 'video') {
+    var items = document.getElementsByTagName('video');
+    for(var i = 0, len = items.length; i < len;i++){
+        if(items[i] == e.target) {
+          if (i+1 < items.length){
+            items[i+1].play();
+          } else {
+            items[0].play();
+          }
+        } 
+    }
+  }
+}, true);
+
 function createVibbidi(item) {
   var mp4url = item.uri.replace("http", "https");
   return `
   <div class="video-wrapper">
       <h2>${item.id}</h2>
-      <video controls poster="${mp4url}.jpg">
+      <video controls poster="${mp4url}.jpg" class="my-video">
         <source src="${mp4url}" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
-      <audio controls>
+      <audio controls class="my-audio">
         <source src="${mp4url}.mp3" type="audio/mpeg" />
         Your browser does not support HTML5 audio.
       </audio>
