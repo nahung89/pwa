@@ -32,8 +32,12 @@ function createMediaSession(source) {
     navigator.mediaSession.setActionHandler('pause', function() {
       currentItem.pause();
     });
-    navigator.mediaSession.setActionHandler('previoustrack', playPrev);
-    navigator.mediaSession.setActionHandler('nexttrack', playNext);
+    navigator.mediaSession.setActionHandler('previoustrack', function() {
+      playPrev(currentItem, currentItem.tagName.toLowerCase());
+    });
+    navigator.mediaSession.setActionHandler('nexttrack', function() {
+      playNext(currentItem, currentItem.tagName.toLowerCase())
+    });
   }
 }
 
@@ -71,8 +75,7 @@ document.addEventListener("play", function(e) {
   };
 
   e.target.addEventListener("ended", function(evt) {
-    // playNext(evt.target, evt.target.tagName.toLowerCase());
-    playPrev(evt.target, evt.target.tagName.toLowerCase());
+    playNext(evt.target, evt.target.tagName.toLowerCase());
   });
 }, true);
 
