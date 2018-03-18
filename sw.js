@@ -1,4 +1,4 @@
-const cacheName = 'news-v1';
+const cacheName = 'news-v0.1.2';
 
 const staticAssets = [
   './',
