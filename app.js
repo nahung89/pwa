@@ -41,7 +41,21 @@ function createMediaSession(source) {
   }
 }
 
-window.addEventListener('load', e => fetchVibbidi());
+// window.addEventListener('load', e => fetchVibbidi());
+
+//Check if a new cache is available on page load.
+window.addEventListener('load', function( ) {
+  fetchVibbidi();
+  window.applicationCache.addEventListener('updateready', function( ) {
+    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+        window.applicationCache.swapCache();
+        window.location.reload( true );
+    } else {
+      // Manifest didn't changed. Nothing new to server.
+    }
+  }, false);
+}, false);
+
 
 window.addEventListener('online', () => fetchVibbidi());
 
