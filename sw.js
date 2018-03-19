@@ -4,9 +4,8 @@ const staticAssets = [
   './',
   './index.html',
   './app.js',
-  './styles.css',
-  './fallback.json',
-  './images/fetch-dog.jpg'
+  './service-worker.js',
+  './styles.css'
 ];
 
 self.addEventListener('install', async function () {
