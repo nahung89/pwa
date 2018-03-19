@@ -23,4 +23,4 @@ CACHE:
 ./index.html
 ./app.js
 ./styles.css
-
+./service-worker.js
