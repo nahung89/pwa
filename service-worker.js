@@ -28,7 +28,7 @@
 // cache, then increment the CACHE_VERSION value. It will kick off the service worker update
 // flow and the old cache(s) will be purged as part of the activate event handler when the
 // updated service worker is activated.
-var CACHE_VERSION = 3;
+var CACHE_VERSION = 4;
 var CURRENT_CACHES = {
   prefetch: 'prefetch-cache-v' + CACHE_VERSION,
   dynamic: 'dynamic-cache-v' + CACHE_VERSION
@@ -61,7 +61,7 @@ self.addEventListener('install', function(event) {
         // If we were to get back a response from the HTTP browser cache for this precaching request
         // then that stale response would be used indefinitely, or at least until the next time
         // the service worker script changes triggering the install flow.
-        url.search += (url.search ? '&' : '?') + 'cache-bust=' + now;
+        // url.search += (url.search ? '&' : '?') + 'cache-bust=' + now;
 
         // It's very important to use {mode: 'no-cors'} if there is any chance that
         // the resources being fetched are served off of a server that doesn't support
@@ -73,7 +73,7 @@ self.addEventListener('install', function(event) {
         // (https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cross-origin-resources)
         // and it is not possible to determine whether an opaque response represents a success or failure
         // (https://github.com/whatwg/fetch/issues/14).
-        var request = new Request(url, {mode: 'no-cors'});
+        // var request = new Request(url, {mode: 'no-cors'});
         return fetch(request).then(function(response) {
           if (response.status >= 400) {
             throw new Error('request for ' + urlToPrefetch +
