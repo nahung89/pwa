@@ -38,12 +38,11 @@ self.addEventListener('install', function(event) {
   var now = Date.now();
 
   var urlsToPrefetch = [
-    './',
+  './',
   './index.html',
   './app.js',
-  './styles.css',
-  './fallback.json',
-  './images/fetch-dog.jpg'
+  './service-worker.js',
+  './styles.css'
   ];
 
   // All of these logging statements should be visible via the "Inspect" interface
