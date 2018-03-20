@@ -131,7 +131,7 @@ function playNext(currentItem, type) {
   }
 }
 
-function createVibbidi(item) {
+function createVibbidiOld(item) {
   var mp4url = item.uri.replace("http", "https");
   return `
   <div class="video-wrapper">
@@ -144,6 +144,16 @@ function createVibbidi(item) {
         <source src="${mp4url}.mp3" type="audio/mpeg" />
         Your browser does not support HTML5 audio.
       </audio>
+  </div>
+  `;
+}
+
+function createVibbidi(item) {
+  var mp4url = item.uri.replace("http", "https");
+  return `
+  <div class="image-wrapper">
+      <h2>${item.id}</h2>
+      <img src="${mp4url}.jpg" />
   </div>
   `;
 }
