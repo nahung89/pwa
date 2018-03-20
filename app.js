@@ -5,7 +5,7 @@ var currentItem;
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () =>
-    navigator.serviceWorker.register('sw.js') // sw.js
+    navigator.serviceWorker.register('service-worker.js') // sw.js
       .then(registration => console.log('Service Worker registered'))
       .catch(err => console.error('SW registration failed: ' + err)));
 }
@@ -61,7 +61,7 @@ window.addEventListener('online', () => fetchVibbidi());
 
 async function fetchVibbidi() {
   newsArticles.innerHTML = '';
-  const response = await fetch(`https://api4.vibbidi.com/charts/369415522042770?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`)
+  const response = await fetch(`https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`)
   const json = await response.json();
   sourceVideos = json.videos;
   newsArticles.innerHTML = 
