@@ -1,6 +1,6 @@
 const newsArticles = document.querySelector('main');
 const statusElement = document.getElementById('status');
-const apiUrl = `https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`
+const apiUrl = `https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=5&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`
 
 var sourceVideos;
 var currentItem;
