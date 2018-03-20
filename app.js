@@ -1,5 +1,6 @@
 const newsArticles = document.querySelector('main');
 const statusElement = document.getElementById('status');
+const apiUrl = `https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`
 
 var sourceVideos;
 var currentItem;
@@ -61,12 +62,16 @@ window.addEventListener('load', function( ) {
 window.addEventListener('online', () => fetchVibbidi());
 
 async function fetchVibbidi() {
-  const response = await fetch(`https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?items_to_get=21&start_point=0&mpk=e429d5baeb58a5608e28c5f241e3e500e74f064b2&muid=966313229108987`)
+  try {
+    const response = await fetch(apiUrl)
   const json = await response.json();
   sourceVideos = json.videos;
   newsArticles.innerHTML = 
      json.videos.map(createVibbidi).join('\n');
   statusElement.innerHTML = "Fetch API success";
+  } catch (err) {
+    statusElement.innerHTML = "Fail " + err;
+  }
 }
 
 document.addEventListener("play", function(e) {
@@ -131,7 +136,7 @@ function playNext(currentItem, type) {
   }
 }
 
-function createVibbidiOld(item) {
+function createVibbidi(item) {
   var mp4url = item.uri.replace("http", "https");
   return `
   <div class="video-wrapper">
@@ -148,15 +153,15 @@ function createVibbidiOld(item) {
   `;
 }
 
-function createVibbidi(item) {
-  var mp4url = item.uri.replace("http", "https");
-  return `
-  <div class="image-wrapper">
-      <h2>${item.id}</h2>
-      <img src="${mp4url}.jpg" />
-  </div>
-  `;
-}
+// function createVibbidiImage(item) {
+//   var mp4url = item.uri.replace("http", "https");
+//   return `
+//   <div class="image-wrapper">
+//       <h2>${item.id}</h2>
+//       <img src="${mp4url}.jpg" />
+//   </div>
+//   `;
+// }
 
 // <video controls poster="${item.uri}.jpg" style="margin: 0 0 1em 0; max-width: 100%; width: 480px;">
 
