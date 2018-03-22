@@ -40,7 +40,6 @@ self.addEventListener('install', function(event) {
   var urlsToPrefetch = [
   './index.html',
   './app.js',
-  './service-worker.js',
   './styles.css'
   ];
 
