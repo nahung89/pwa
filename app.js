@@ -5,11 +5,25 @@ const apiUrl = 'https://api4.vibbidi.com/v4.1/artists/794881599030348/singles?it
 var sourceVideos;
 var currentItem;
 
+// document.getElementById('version').innerHTML = CACHE_VERSION;
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () =>
     navigator.serviceWorker.register('service-worker.js') // sw.js
       .then(registration => console.log('Service Worker registered'))
       .catch(err => console.error('SW registration failed: ' + err)));
+
+      // https://beebole.com/blog/building-pwa-web-app-android-ios/
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        console.log( 'Service worker status changed: ', this.controller.state );
+        // Listen for changes in the state of our ServiceWorker
+        navigator.serviceWorker.controller.addEventListener('statechange', function() {
+          // If the ServiceWorker becomes "activated", let the user know they can go offline!
+          if (this.state === 'activated') {
+              window.location.reload( true );
+          }
+        });
+      });
 }
 
 function createMediaSession(source) {
@@ -49,6 +63,7 @@ function createMediaSession(source) {
 window.addEventListener('load', function( ) {
   fetchVibbidi();
   window.applicationCache.addEventListener('updateready', function( ) {
+    console.log( 'Service worker status changed: ', this.controller.state );
     if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
         window.applicationCache.swapCache();
         window.location.reload( true );
@@ -72,7 +87,7 @@ async function fetchVibbidi() {
   } catch (err) {
     statusElement.innerHTML = "Fail " + err;
   }
-  
+
   test();
 }
 
