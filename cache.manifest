@@ -1,9 +1,8 @@
 CACHE MANIFEST
-#v0.1.22
+#v0.1.23
 CACHE:
 ./index.html
 ./app.js
 ./styles.css
-./service-worker.js
 NETWORK:
 *

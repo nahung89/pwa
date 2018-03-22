@@ -87,15 +87,6 @@ async function fetchVibbidi() {
   } catch (err) {
     statusElement.innerHTML = "Fail " + err;
   }
-
-  test();
-}
-
-
-async function test() {
-  const response = await fetch('https://node-hnapi.herokuapp.com/show?page=1');
-  const json = await response.json();
-  console.log('Pre-fetching complete.' + json);
 }
 
 document.addEventListener("play", function(e) {
@@ -218,5 +209,11 @@ function createVibbidi(item) {
   //   }
   // }
 // }, true);
+
+// async function test() {
+//   const response = await fetch('https://node-hnapi.herokuapp.com/show?page=1');
+//   const json = await response.json();
+//   console.log('Pre-fetching complete.' + json);
+// }
 
 // this line is just for testing
